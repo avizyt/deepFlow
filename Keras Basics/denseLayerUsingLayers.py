@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow import keras
 
+
 class SimpleDense(keras.layers.Layer):
 
     def __init__(self, units, activation=None):
@@ -10,6 +11,7 @@ class SimpleDense(keras.layers.Layer):
         self.units = units
         self.activation = activation
 
+    # weight creation
     def build(self, input_shape):
         input_dim = input_shape[-1]
         self.W = self.add_weight(
@@ -21,6 +23,7 @@ class SimpleDense(keras.layers.Layer):
             initializer="zeros"
         )
 
+    # forward pass
     def call(self, inputs):
         y = tf.matmul(inputs, self.W) + self.b
         if self.activation is not None:
